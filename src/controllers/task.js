@@ -14,12 +14,19 @@ export async function getTasks(req, res) {
 
 export async function createTask(req, res) {
   console.info('Create new task');
-  const task = new Task(req.body);
-  await task.save();
+  try {
+    const task = new Task(req.body);
+    await task.save();
 
-  res.send({
+    res.send({
     // eslint-disable-next-line no-underscore-dangle
-    id: task._id,
-  });
+      id: task._id,
+    });
+  } catch (error) {
+    console.error('Error creating task -> ', error);
+    res.status(500).send({
+      message: 'Error creating task',
+    });
+  }
 }
 

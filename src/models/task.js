@@ -2,11 +2,6 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const RepeatEnum = {
-  NEVER: 'never',
-  EVERYDAY: 'everyday',
-};
-
 const TaskSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },
@@ -14,8 +9,8 @@ const TaskSchema = new Schema({
   repeat: {
     type: String,
     required: true,
-    enum: Object.values(RepeatEnum),
-    default: RepeatEnum.NEVER,
+    enum: ['never', 'everyday'],
+    default: 'never',
   },
   reminder: { type: Boolean, required: false, default: false },
 }, { timestamps: true });
