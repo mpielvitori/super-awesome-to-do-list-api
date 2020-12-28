@@ -2,11 +2,11 @@
 /* eslint-disable import/extensions */
 import express from 'express';
 
-import { getProducts, createProduct } from '../controllers/product.js';
+import { getTasks, createTask } from '../controllers/task.js';
 
 const router = express.Router();
 
-router.get('/', getProducts);
-router.post('/', createProduct);
+router.get('/', getTasks);
+router.post('/', createTask);
 
 export default router;

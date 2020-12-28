@@ -3,7 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import config from 'config';
 import mongoose from 'mongoose';
-import product from './routes/product.js';
+import task from './routes/task.js';
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
-app.use('/product', product);
+app.use('/task', task);
 
 const port = 3000;
 
