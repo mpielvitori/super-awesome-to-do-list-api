@@ -74,3 +74,22 @@ export async function deleteTaskById(req, res) {
     res.status(500).send({ message: 'Error trying to delete task by id' });
   }
 }
+
+export async function searchTasks(req, res) {
+  console.info('Search tasks ', req.params.query);
+  try {
+    const where = req.params.query ? { $text: { $search: req.params.query } } : {};
+    const tasks = await Task.find(where, {
+      _id: 1,
+      name: 1,
+      createdAt: 1,
+      expiresAt: 1,
+    });
+    res.send(tasks);
+  } catch (error) {
+    console.error('Error trying to search tasks', error);
+    res.status(500).send({
+      message: 'Error trying to search tasks',
+    });
+  }
+}

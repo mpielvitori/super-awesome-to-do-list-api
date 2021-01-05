@@ -14,5 +14,5 @@ const TaskSchema = new Schema({
   },
   reminder: { type: Boolean, required: false, default: false },
 }, { timestamps: true });
-
+TaskSchema.index({ name: 'text', description: 'text', repeat: 'text' });
 export default mongoose.model('Task', TaskSchema);
